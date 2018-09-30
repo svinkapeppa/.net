@@ -29,20 +29,20 @@ namespace Numbers
         internal static bool IsNaN(double d)
         {
             // Подсказка: по аналогии с константами типа int, у типа double тоже есть свой набор констант.
-            return d.Equals(double.NaN);
+            return double.IsNaN(d);
         }
         
         /// <summary>
         /// Возвращает результат сравнения двух вещественнозначных чисел.
         /// </summary>
         /// <returns>-1 - первое меньше второго, 0 - значения равны, 1 - первое больше второго.</returns>
-        internal static int Compare(double l, double r, double TOLERANCE=1e-7)
+        internal static int Compare(double l, double r)
         {
             /*
                 Подумай, почему это задание дано в части про вещественнозначные числа. И почему не дана полная сигнатура метода.
                 Если сходу идей нет, перестань искать подвох и просто реализуй дословно. Теперь еще раз посмотри на код и подумай в чем может быть проблема, сколько должно быть аргументов.
             */
-            if (Math.Abs(l - r) < TOLERANCE)
+            if (Math.Abs(l - r) < double.Epsilon)
             {
                 return 0;
             }
