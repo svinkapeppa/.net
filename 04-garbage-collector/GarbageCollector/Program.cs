@@ -43,7 +43,7 @@ namespace GarbageCollector
             if (GC.CollectionCount(0) <= 0) return;
             sw.Start();
             GC.Collect(0, GCCollectionMode.Forced);
-            GC.WaitForPendingFinalizers();
+            GC.WaitForFullGCComplete();
             sw.Stop();
             Console.WriteLine("Generation: 0\tElapsed: {0}", sw.Elapsed);
             

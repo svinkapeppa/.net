@@ -15,7 +15,7 @@ namespace BoringVector
         */
 
         public readonly double X;
-        public readonly double Y;
+        public double Y { get; }
 
         public Vector(double x, double y)
         {

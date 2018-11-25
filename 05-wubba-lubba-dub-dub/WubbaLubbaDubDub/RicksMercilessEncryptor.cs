@@ -13,7 +13,7 @@ namespace WubbaLubbaDubDub
         public static string[] SplitToLines(this string text)
         {
             // У строки есть специальный метод. Давай здесь без регулярок
-            return text.Split('\n', StringSplitOptions.RemoveEmptyEntries);
+            return text.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace WubbaLubbaDubDub
                 FYI: локальную функцию можно объявлять даже после строки с return.
                 То же самое можно сделать и для всех оставшихся методов.
             */
-            return string.Join("", s.Select(c => $"\\u{Convert.ToInt16(c):X4}"));
+            return string.Join(String.Empty, s.Select(c => $"\\u{Convert.ToInt16(c):X4}"));
         }
 
         /// <summary>
