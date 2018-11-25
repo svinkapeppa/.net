@@ -60,21 +60,20 @@ namespace DrunkFibonacci
             yield return 1;
             yield return 1;
             
+            var probs = GetDeterministicRandomSequence().Skip(2);
             var prev = 1;
             var curr = 1;
             var i = 2;
-            var probs = GetDeterministicRandomSequence().GetEnumerator();
-            
-            while (true)
+
+            foreach (var prob in probs)
             {
                 ++i;
                 
                 var next = unchecked(prev + curr);
                 prev = curr;
                 curr = next;
-
-                probs.MoveNext();
-                if ((42 & probs.Current) == 42)
+                
+                if ((42 & prob) == 42)
                 {
                     next &= ~42;
                 }
@@ -130,18 +129,17 @@ namespace DrunkFibonacci
         /// </summary>
         public static IEnumerable<int[]> GetInChunks()
         {
-            var generator = GetDrunkFibonacci().GetEnumerator();
+            var generator = GetDrunkFibonacci();
             var chunk = CreateIntArray(16);
+            var i = 0;
 
-            while (true)
+            foreach (var element in generator)
             {
-                for (var i = 0; i < 16; ++i)
+                chunk[i % 16] = element;
+                if (++i % 16 == 0)
                 {
-                    generator.MoveNext();
-                    chunk[i] = generator.Current;
+                    yield return chunk;
                 }
-                
-                yield return chunk;
             }
         }
 
